@@ -33,7 +33,7 @@ export default function Header() {
             className="w-[350px] h-[350px] rounded-lg shadow-lg absolute left-8 top-0 z-10 border-4 border-white flex items-center justify-center overflow-hidden"
             style={{ zIndex: 10 }}
           >
-            <div className="w-[470px] h-[470px] bg-[url('/images/gallery/painting-6.jpg')] bg-cover bg-center shrink-0 animate-spin-slower"></div>
+            <div className="w-[500px] h-[500px] bg-[url('/images/gallery/painting-6.jpg')] bg-cover bg-center shrink-0 animate-spin-slower"></div>
           </motion.div>
           
           <motion.div 
