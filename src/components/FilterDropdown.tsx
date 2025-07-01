@@ -27,6 +27,10 @@ export default function FilterDropdown({ options, value, onChange, className = '
     setOpen(!open);
   };
 
+  const capitalizeFirstLetter = (str: string) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
   return (
     <div
       className={`relative inline-block ${className}`}
@@ -42,7 +46,7 @@ export default function FilterDropdown({ options, value, onChange, className = '
       >
         {options.map(option => (
           <option key={option} value={option} onMouseDown={() =>setOpen(false)}>
-            {option}
+            {capitalizeFirstLetter(option)}
           </option>
         ))}
       </select>

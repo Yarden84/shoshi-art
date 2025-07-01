@@ -3,35 +3,51 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import FilterDropdown from '@/components/FilterDropdown';
+import { getArtworks } from '@/lib/strapi';
+import { Artwork } from '@/lib/strapi';
 
-const images = [
-  'painting-1.jpg', 'painting-2.jpg', 'painting-3.jpg', 'painting-4.jpg', 'painting-5.jpg', 'painting-6.jpg', 'painting-7.jpg', 'painting-8.jpg',
-  'children-1.jpg', 'children-2.jpg', 'children-3.jpg', 'children-4.jpg', 'children-5.jpg', 'children-6.jpg',
-  'sculpture-1.jpg', 'sculpture-2.jpg', 'sculpture-3.jpg', 'sculpture-4.jpg',
-  'other-1.jpg', 'other-2.jpg', 'other-3.jpg', 'other-4.jpg', 'other-5.jpg', 'other-6.jpg', 'other-7.jpg',
-];
-
-const filterOptions = ['All', 'Paintings', 'Children', 'Sculpture', 'Other'];
-
-function getCategory(filename: string) {
-  if (filename.startsWith('painting-')) return 'Paintings';
-  if (filename.startsWith('children-')) return 'Children';
-  if (filename.startsWith('sculpture-')) return 'Sculpture';
-  if (filename.startsWith('other-')) return 'Other';
-  return 'Other';
-}
-
-export default function Gallery() {
+export default function GalleryPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [filter, setFilter] = useState('All');
+  const [artworks, setArtworks] = useState<Artwork[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const generateFilterOptions = (artworks: Artwork[]): string[] => {
+    const categories = new Set<string>();
+    
+    artworks.forEach(artwork => {
+      if (artwork.title) {
+        categories.add(artwork.title);
+      }
+    });
+    
+    return ['All', ...Array.from(categories).sort()];
+  };
+
+  const filterOptions = generateFilterOptions(artworks);
 
   useEffect(() => {
     const urlFilter = searchParams.get('filter');
     if (urlFilter && filterOptions.includes(urlFilter)) {
       setFilter(urlFilter);
     }
-  }, [searchParams]);
+  }, [searchParams, filterOptions]);
+
+  useEffect(() => {
+    async function fetchArtworks() {
+      try {
+        const data = await getArtworks();
+        console.log('All artworks fetched:', data);
+        setArtworks(data);
+      } catch (error) {
+        console.error('Error fetching artworks:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchArtworks();
+  }, []);
 
   const handleFilterChange = (value: string) => {
     setFilter(value);
@@ -44,13 +60,35 @@ export default function Gallery() {
     router.replace(`?${params.toString()}`);
   };
 
-  const filteredImages = filter === 'All'
-    ? images
-    : images.filter(img => getCategory(img) === filter);
+  const filteredArtworks = filter === 'All'
+    ? artworks
+    : artworks.filter(artwork => artwork.title === filter);
+
+  const allImages: Array<{ artwork: Artwork; image: any; imageIndex: number }> = [];
+  
+  filteredArtworks.forEach(artwork => {
+    if (artwork.images && artwork.images.length > 0) {
+      artwork.images.forEach((image, imageIndex) => {
+        allImages.push({ artwork, image, imageIndex });
+      });
+    }
+  });
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-gray-600">Loading artworks...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-white px-4 py-8 relative">
-      <div className="max-w-6xl mx-auto pt-16">
+    <div className="min-h-screen bg-gray-50 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-row items-center justify-between mb-8">
           <h1 className="text-4xl font-bold text-gray-800">Gallery</h1>
           <FilterDropdown
@@ -59,18 +97,27 @@ export default function Gallery() {
             onChange={handleFilterChange}
           />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredImages.map(img => (
-            <div key={img} className="w-full aspect-square rounded-lg overflow-hidden shadow-lg border border-gray-100 bg-gray-50 flex items-center justify-center group border-4 border-white">
-              <img
-                src={`/images/gallery/${img}`}
-                alt={img}
-                className="h-full animate-none group-hover:scale-110 transition-all duration-700"
-                loading="lazy"
-              />
-            </div>
-          ))}
-        </div>
+
+        {allImages.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-gray-500">
+              {filter === 'All' ? 'No artworks available yet.' : `No artworks found for ${filter}.`}
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {allImages.map(({ artwork, image, imageIndex }, index) => (
+              <div key={`${artwork.id}-${imageIndex}`} className="w-full aspect-square rounded-lg overflow-hidden shadow-lg border border-gray-100 bg-gray-50 flex items-center justify-center group border-4 border-white">
+                <img
+                  src={`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${image.url}`}
+                  alt={`${artwork.title || 'Artwork'} - Image ${imageIndex + 1}`}
+                  className="h-full animate-none group-hover:scale-110 transition-all duration-700"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

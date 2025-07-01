@@ -1,24 +1,62 @@
-export default function About() {
+// import { getAboutContent } from '@/lib/strapi';
+// import StrapiImage from '@/components/ui/StrapiImage';
+
+export default async function AboutPage() {
+  // const aboutContent = await getAboutContent();
+
+  const defaultContent = {
+    title: 'About Me',
+    content: `
+      <p>Shoshi Haizler is a passionate artist who loves painting, drawing, and sculpting. Her work is inspired by the beauty of everyday life and the vibrant colors of nature.</p>
+      <p>With years of experience and a unique artistic vision, Shoshi brings her creations to life in her studio. She believes that art has the power to connect people and evoke emotions that words cannot express.</p>
+      <p>Her artistic journey began at a young age, and she has been honing her craft ever since. She draws inspiration from the world around her, from the changing seasons to the people she meets.</p>
+    `,
+    bio: 'Shoshi Haizler is a passionate artist who loves painting, drawing, and sculpting. Her work is inspired by the beauty of everyday life and the vibrant colors of nature.',
+  };
+
+  // const displayContent = aboutContent?.attributes || defaultContent;
+  const displayContent = defaultContent;
+
   return (
-    <section
-      className="min-h-screen flex items-center justify-center relative bg-white overflow-hidden"
-    >
-      {/* Background image, slightly offset to the left and blurred for readability */}
-      <img
-        src="/images/about/2.jpg"
-        alt="Shoshi Haizler art background"
-        className="absolute left-[-10vw] top-1/2 -translate-y-1/2 w-[120vw] max-w-none h-auto opacity-40 blur-sm select-none pointer-events-none z-0"
-        aria-hidden="true"
-      />
-      <div className="relative z-10 max-w-2xl mx-auto px-6 py-16 bg-white/80 rounded-xl shadow-lg text-center flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold text-gray-800 mb-8">About Shoshi Haizler</h1>
-        <div className="text-lg text-gray-700 leading-relaxed">
-          Shoshi Haizler is a passionate artist who loves painting, drawing, and sculpting. Her work is inspired by the beauty of everyday life and the vibrant colors of nature. With years of experience and a unique artistic vision, Shoshi brings her creations to life in her studio.<br /><br />
-          Shoshi's journey as an artist began at a young age, experimenting with different mediums and techniques. Over the years, she has developed a distinctive style that blends realism with expressive color and form. Her paintings often capture serene landscapes, lively portraits, and imaginative scenes that invite viewers to explore their own interpretations.<br /><br />
-          In addition to painting, Shoshi is an accomplished sculptor. Her sculptures reflect a deep appreciation for the human form and the natural world, often characterized by fluid lines and dynamic movement. Each piece is crafted with meticulous attention to detail and a sense of wonder.<br /><br />
-          Through her art, Shoshi aims to evoke emotion, spark curiosity, and celebrate the beauty that surrounds us. Whether working on canvas or in clay, she is dedicated to sharing her creative vision and inspiring others to find joy in artistic expression.
+    <div className="min-h-screen bg-gray-50 py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="relative h-96 lg:h-full">
+              
+                <img
+                  src="/images/about/1.jpg"
+                  alt="Shoshi Haizler"
+                  className="w-full h-full object-cover"
+                />
+              
+            </div>
+
+            <div className="p-8">
+              <h1 className="text-3xl font-bold text-gray-900 mb-6">
+                {displayContent.title}
+              </h1>
+
+              <div className="prose prose-gray max-w-none">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: displayContent.content,
+                  }}
+                />
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                  Artist Statement
+                </h2>
+                <p className="text-gray-600 leading-relaxed">
+                  {displayContent.bio}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 } 
