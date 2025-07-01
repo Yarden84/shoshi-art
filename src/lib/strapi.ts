@@ -24,6 +24,14 @@ export interface Artwork {
   images?: StrapiImage[];
 }
 
+export interface AboutContent {
+  id: number;
+  title: string;
+  content: string;
+  button: string;
+  bio?: string;
+}
+
 export async function fetchAPI<T>(endpoint: string): Promise<StrapiResponse<T>> {
   try {
     const res = await fetch(`${STRAPI_URL}/api${endpoint}`, {
@@ -52,6 +60,19 @@ export async function getArtworks(featured?: boolean): Promise<Artwork[]> {
   } catch (error) {
     console.error('Error fetching artworks:', error);
     return [];
+  }
+}
+
+export async function getAboutContent(): Promise<AboutContent | null> {
+  try {
+    console.log('Fetching about content from:', `${STRAPI_URL}/api/about`);
+    const response = await fetchAPI<AboutContent>('/about');
+    console.log('Raw about response:', response);
+    console.log('About data:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching about content:', error);
+    return null;
   }
 }
 

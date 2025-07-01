@@ -1,8 +1,8 @@
-// import { getAboutContent } from '@/lib/strapi';
+import { getAboutContent } from '@/lib/strapi';
 // import StrapiImage from '@/components/ui/StrapiImage';
 
 export default async function AboutPage() {
-  // const aboutContent = await getAboutContent();
+  const aboutContent = await getAboutContent();
 
   const defaultContent = {
     title: 'About Me',
@@ -14,22 +14,31 @@ export default async function AboutPage() {
     bio: 'Shoshi Haizler is a passionate artist who loves painting, drawing, and sculpting. Her work is inspired by the beauty of everyday life and the vibrant colors of nature.',
   };
 
-  // const displayContent = aboutContent?.attributes || defaultContent;
-  const displayContent = defaultContent;
+  const displayContent = aboutContent || defaultContent;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen bg-gray-50 py-12 overflow-hidden">
+      {/* Soft background image */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: "url('/images/about-bg.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.18,
+          filter: 'blur(2px) brightness(1.1)',
+        }}
+        aria-hidden="true"
+      />
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="relative h-96 lg:h-full">
-              
-                <img
-                  src="/images/about/1.jpg"
-                  alt="Shoshi Haizler"
-                  className="w-full h-full object-cover"
-                />
-              
+              <img
+                src="/images/about/1.jpg"
+                alt="Shoshi Haizler"
+                className="w-full h-full object-cover"
+              />
             </div>
 
             <div className="p-8">
@@ -38,19 +47,8 @@ export default async function AboutPage() {
               </h1>
 
               <div className="prose prose-gray max-w-none">
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: displayContent.content,
-                  }}
-                />
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-gray-200">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                  Artist Statement
-                </h2>
-                <p className="text-gray-600 leading-relaxed">
-                  {displayContent.bio}
+                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                  {displayContent.content}
                 </p>
               </div>
             </div>
