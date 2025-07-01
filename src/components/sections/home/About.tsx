@@ -15,16 +15,12 @@ export default function About() {
   useEffect(() => {
     async function fetchAboutContent() {
       try {
-        console.log('About component: Starting to fetch about content');
         const data = await getAboutContent();
-        console.log('About component: Received data:', data);
         setContent(data);
-        console.log('About component: Set content state to:', data);
       } catch (error) {
-        console.error('About component: Error fetching about content:', error);
+        // Optionally keep this error log for debugging
       } finally {
         setLoading(false);
-        console.log('About component: Loading finished');
       }
     }
     fetchAboutContent();
@@ -37,8 +33,6 @@ export default function About() {
   };
 
   const displayContent = content || defaultContent;
-  // console.log('About component: Display content:', displayContent);
-  // console.log('About component: Content state:', content);
 
   // Truncate content to approximately 7 lines for the main page
   const truncateContent = (text: string, maxLines: number = 7) => {

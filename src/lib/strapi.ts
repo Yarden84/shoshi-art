@@ -55,7 +55,6 @@ export async function fetchAPI<T>(endpoint: string): Promise<StrapiResponse<T>> 
 export async function getArtworks(featured?: boolean): Promise<Artwork[]> {
   try {
     const response = await fetchAPI<Artwork[]>('/galleries?populate=*');
-    console.log('Strapi response:', response);
     return response.data;
   } catch (error) {
     console.error('Error fetching artworks:', error);
@@ -65,10 +64,7 @@ export async function getArtworks(featured?: boolean): Promise<Artwork[]> {
 
 export async function getAboutContent(): Promise<AboutContent | null> {
   try {
-    console.log('Fetching about content from:', `${STRAPI_URL}/api/about`);
     const response = await fetchAPI<AboutContent>('/about');
-    console.log('Raw about response:', response);
-    console.log('About data:', response.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching about content:', error);
