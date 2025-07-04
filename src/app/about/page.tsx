@@ -1,8 +1,28 @@
-import { getAboutContent } from '@/lib/strapi';
+'use client';
+
+import { useState, useEffect } from 'react';
+import { getAboutContent, AboutContent } from '@/lib/strapi';
+import { useLanguage } from '@/contexts/LanguageContext';
 // import StrapiImage from '@/components/ui/StrapiImage';
 
-export default async function AboutPage() {
-  const aboutContent = await getAboutContent();
+export default function AboutPage() {
+  const [aboutContent, setAboutContent] = useState<AboutContent | null>(null);
+  const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
+
+  useEffect(() => {
+    async function fetchAboutContent() {
+      try {
+        const data = await getAboutContent(language);
+        setAboutContent(data);
+      } catch (error) {
+        console.error('Error fetching about content:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchAboutContent();
+  }, [language]); // Re-fetch when language changes
 
   const defaultContent = {
     title: 'About Me',
@@ -15,6 +35,16 @@ export default async function AboutPage() {
   };
 
   const displayContent = aboutContent || defaultContent;
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 py-12 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-600">Loading about content...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative min-h-screen bg-gray-50 py-12 overflow-hidden flex items-center justify-center">

@@ -52,22 +52,42 @@ export async function fetchAPI<T>(endpoint: string): Promise<StrapiResponse<T>> 
   }
 }
 
-export async function getArtworks(featured?: boolean): Promise<Artwork[]> {
+export async function getArtworks(locale = 'en'): Promise<Artwork[]> {
   try {
-    const response = await fetchAPI<Artwork[]>('/galleries?populate=*');
+    const response = await fetchAPI<Artwork[]>(`/galleries?populate=*&locale=${locale}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching artworks:', error);
+    // Fallback to English if Hebrew fails
+    if (locale === 'he') {
+      try {
+        const fallbackResponse = await fetchAPI<Artwork[]>('/galleries?populate=*&locale=en');
+        return fallbackResponse.data;
+      } catch (fallbackError) {
+        console.error('Error fetching fallback artworks:', fallbackError);
+        return [];
+      }
+    }
     return [];
   }
 }
 
-export async function getAboutContent(): Promise<AboutContent | null> {
+export async function getAboutContent(locale = 'en'): Promise<AboutContent | null> {
   try {
-    const response = await fetchAPI<AboutContent>('/about');
+    const response = await fetchAPI<AboutContent>(`/about?locale=${locale}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching about content:', error);
+    // Fallback to English if Hebrew fails
+    if (locale === 'he') {
+      try {
+        const fallbackResponse = await fetchAPI<AboutContent>('/about?locale=en');
+        return fallbackResponse.data;
+      } catch (fallbackError) {
+        console.error('Error fetching fallback about content:', fallbackError);
+        return null;
+      }
+    }
     return null;
   }
 }

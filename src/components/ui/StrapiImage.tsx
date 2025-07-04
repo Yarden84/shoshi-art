@@ -22,11 +22,11 @@ export default function StrapiImage({
   width,
   height,
 }: StrapiImageProps) {
-  const imageUrl = image.attributes.url.startsWith('http')
-    ? image.attributes.url
-    : `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${image.attributes.url}`;
+  const imageUrl = image.url.startsWith('http')
+    ? image.url
+    : `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${image.url}`;
 
-  const imageAlt = alt || image.attributes.alternativeText || image.attributes.name;
+  const imageAlt = alt || image.name;
 
   if (fill) {
     return (
@@ -46,8 +46,8 @@ export default function StrapiImage({
     <Image
       src={imageUrl}
       alt={imageAlt}
-      width={width || image.attributes.width}
-      height={height || image.attributes.height}
+      width={width || 400}
+      height={height || 400}
       className={className}
       priority={priority}
       sizes={sizes}

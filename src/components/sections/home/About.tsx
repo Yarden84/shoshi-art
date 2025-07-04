@@ -5,25 +5,27 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { AboutContent, getAboutContent } from '@/lib/strapi';
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function About() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
   const [content, setContent] = useState<AboutContent | null>(null);
   const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
 
   useEffect(() => {
     async function fetchAboutContent() {
       try {
-        const data = await getAboutContent();
+        const data = await getAboutContent(language);
         setContent(data);
       } catch (error) {
-        // Optionally keep this error log for debugging
+        console.error('Error fetching about content:', error);
       } finally {
         setLoading(false);
       }
     }
     fetchAboutContent();
-  }, []);
+  }, [language]); // Re-fetch when language changes
 
   const defaultContent = {
     title: 'About Me',

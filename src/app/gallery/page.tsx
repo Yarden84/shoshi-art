@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import FilterDropdown from '@/components/FilterDropdown';
 import { getArtworks, StrapiImage } from '@/lib/strapi';
 import { Artwork } from '@/lib/strapi';
-import { log } from 'console';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function GalleryPage() {
   const searchParams = useSearchParams();
@@ -13,6 +13,7 @@ export default function GalleryPage() {
   const [filter, setFilter] = useState('All');
   const [artworks, setArtworks] = useState<Artwork[]>([]);
   const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
 
   const generateFilterOptions = (artworks: Artwork[]): string[] => {
     const categories = new Set<string>();
@@ -41,7 +42,7 @@ export default function GalleryPage() {
   useEffect(() => {
     async function fetchArtworks() {
       try {
-        const data = await getArtworks();
+        const data = await getArtworks(language);
         setArtworks(data);
       } catch (error) {
         console.error('Error fetching artworks:', error);
@@ -50,7 +51,7 @@ export default function GalleryPage() {
       }
     }
     fetchArtworks();
-  }, []);
+  }, [language]); // Re-fetch when language changes
 
   const handleFilterChange = (value: string) => {
     setFilter(value);
