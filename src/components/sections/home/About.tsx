@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { AboutContent, getAboutContent } from '@/lib/strapi';
-import StrapiImage from '@/components/ui/StrapiImage';
 import { useState, useEffect } from 'react';
 
 export default function About() {

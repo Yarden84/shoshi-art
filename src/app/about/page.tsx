@@ -17,8 +17,7 @@ export default async function AboutPage() {
   const displayContent = aboutContent || defaultContent;
 
   return (
-    <div className="relative min-h-screen bg-gray-50 py-12 overflow-hidden">
-      {/* Soft background image */}
+    <div className="relative min-h-screen bg-gray-50 py-12 overflow-hidden flex items-center justify-center">
       <div
         className="absolute inset-0 z-0"
         style={{

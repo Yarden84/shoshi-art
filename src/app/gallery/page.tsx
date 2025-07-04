@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import FilterDropdown from '@/components/FilterDropdown';
-import { getArtworks } from '@/lib/strapi';
+import { getArtworks, StrapiImage } from '@/lib/strapi';
 import { Artwork } from '@/lib/strapi';
 
 export default function GalleryPage() {
@@ -64,7 +64,7 @@ export default function GalleryPage() {
     ? artworks
     : artworks.filter(artwork => artwork.title === filter);
 
-  const allImages: Array<{ artwork: Artwork; image: any; imageIndex: number }> = [];
+  const allImages: Array<{ artwork: Artwork; image: StrapiImage; imageIndex: number }> = [];
   
   filteredArtworks.forEach(artwork => {
     if (artwork.images && artwork.images.length > 0) {
@@ -106,7 +106,7 @@ export default function GalleryPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {allImages.map(({ artwork, image, imageIndex }, index) => (
+            {allImages.map(({ artwork, image, imageIndex }) => (
               <div key={`${artwork.id}-${imageIndex}`} className="w-full aspect-square rounded-lg overflow-hidden shadow-lg border border-gray-100 bg-gray-50 flex items-center justify-center group border-4 border-white">
                 <img
                   src={`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${image.url}`}
