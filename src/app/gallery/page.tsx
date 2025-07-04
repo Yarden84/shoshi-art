@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import FilterDropdown from '@/components/FilterDropdown';
 import { getArtworks, StrapiImage } from '@/lib/strapi';
 import { Artwork } from '@/lib/strapi';
+import { log } from 'console';
 
 export default function GalleryPage() {
   const searchParams = useSearchParams();
@@ -29,8 +30,11 @@ export default function GalleryPage() {
 
   useEffect(() => {
     const urlFilter = searchParams.get('filter');
+    
     if (urlFilter && filterOptions.includes(urlFilter)) {
       setFilter(urlFilter);
+    } else if (!urlFilter) {
+      setFilter('All');
     }
   }, [searchParams, filterOptions]);
 
@@ -38,7 +42,6 @@ export default function GalleryPage() {
     async function fetchArtworks() {
       try {
         const data = await getArtworks();
-        console.log('All artworks fetched:', data);
         setArtworks(data);
       } catch (error) {
         console.error('Error fetching artworks:', error);
@@ -52,6 +55,7 @@ export default function GalleryPage() {
   const handleFilterChange = (value: string) => {
     setFilter(value);
     const params = new URLSearchParams(Array.from(searchParams.entries()));
+    
     if (value === 'All') {
       params.delete('filter');
     } else {

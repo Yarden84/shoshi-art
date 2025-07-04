@@ -51,36 +51,37 @@ export default function ArtWorks({ artworks }: ArtWorksProps) {
   console.log('Display Artworks:', displayArtworks);
 
   return (
-    <motion.section
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-      transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
-      className="w-full h-screen flex flex-col items-center justify-center relative"
-      style={{ backgroundColor: '#fefcf6' }}
-    >
-      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true" />
-      <h1 className="text-4xl font-bold text-gray-800 mb-12 z-10">My Artwork</h1>
-      <div className="flex flex-row gap-8 z-10">
-        {displayArtworks.map((art, index) => (
-          <Link
-            key={index}
-            href={art.href}
-            className="group"
-          >
-            <div className="w-[250px] h-[250px] rounded-lg shadow-lg border-4 border-white overflow-hidden flex items-center justify-center relative group">
-              <img
-                src={art.img}
-                alt={art.title}
-                className="w-[350px] h-[350px] object-cover animate-none group-hover:scale-110 transition-all duration-700"
-              />
-              <span className="absolute inset-0 flex items-center justify-center text-white text-3xl bg-black/30 group-hover:bg-black/50 transition-colors">
-                {art.title}
-              </span>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </motion.section>
+    <div className="w-full h-screen" style={{ backgroundColor: '#fefcf6' }}>
+      <motion.section
+        ref={ref}
+        initial={{ opacity: 0, y: 40 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+        transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
+        className="w-full h-screen flex flex-col items-center justify-center relative"
+      >
+        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true" />
+        <h1 className="text-4xl font-bold text-gray-800 mb-12 z-10">My Artwork</h1>
+        <div className="flex flex-row gap-8 z-10">
+          {displayArtworks.map((art, index) => (
+            <Link
+              key={index}
+              href={art.href}
+              className="group"
+            >
+              <div className="w-[250px] h-[250px] rounded-lg shadow-lg border-4 border-white overflow-hidden flex items-center justify-center relative group">
+                <img
+                  src={art.img}
+                  alt={art.title}
+                  className="w-[350px] h-[350px] object-cover animate-none group-hover:scale-110 transition-all duration-700"
+                />
+                <span className="absolute inset-0 flex items-center justify-center text-white text-3xl bg-black/30 group-hover:bg-black/50 transition-colors capitalize">
+                  {art.title}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </motion.section>
+    </div>
   );
 } 
