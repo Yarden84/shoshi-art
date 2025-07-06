@@ -1,4 +1,7 @@
+'use client';
+
 import React, { useState, useRef } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface FilterDropdownProps {
   options: string[];
@@ -10,8 +13,8 @@ interface FilterDropdownProps {
 export default function FilterDropdown({ options, value, onChange, className = '' }: FilterDropdownProps) {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const { language } = useLanguage();
 
-  // const handleFocus = () => setOpen(true);
   const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
     if (!wrapperRef.current?.contains(e.relatedTarget as Node)) {
       setOpen(false);
@@ -31,6 +34,13 @@ export default function FilterDropdown({ options, value, onChange, className = '
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
+  const getDisplayText = (option: string) => {
+    if (option === 'All') {
+      return language === 'he' ? 'הכל' : 'All';
+    }
+    return capitalizeFirstLetter(option);
+  };
+
   return (
     <div
       className={`relative inline-block ${className}`}
@@ -46,7 +56,7 @@ export default function FilterDropdown({ options, value, onChange, className = '
       >
         {options.map(option => (
           <option key={option} value={option} onMouseDown={() =>setOpen(false)}>
-            {capitalizeFirstLetter(option)}
+            {getDisplayText(option)}
           </option>
         ))}
       </select>

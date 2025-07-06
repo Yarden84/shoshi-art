@@ -51,7 +51,7 @@ export default function GalleryPage() {
       }
     }
     fetchArtworks();
-  }, [language]); // Re-fetch when language changes
+  }, [language]); 
 
   const handleFilterChange = (value: string) => {
     setFilter(value);
@@ -95,7 +95,7 @@ export default function GalleryPage() {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-row items-center justify-between mb-8">
-          <h1 className="text-4xl font-bold text-gray-800">Gallery</h1>
+          <h1 className="text-4xl font-bold text-gray-800">{language == 'en' ?'Gallery' : 'גלריה'}</h1>
           <FilterDropdown
             options={filterOptions}
             value={filter}
@@ -106,7 +106,10 @@ export default function GalleryPage() {
         {allImages.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-gray-500">
-              {filter === 'All' ? 'No artworks available yet.' : `No artworks found for ${filter}.`}
+              {filter === 'All' 
+                ? (language === 'he' ? 'אין יצירות זמינות עדיין.' : 'No artworks available yet.')
+                : (language === 'he' ? `לא נמצאו יצירות עבור ${filter}.` : `No artworks found for ${filter}.`)
+              }
             </p>
           </div>
         ) : (
