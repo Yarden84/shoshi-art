@@ -2,12 +2,52 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useState, useEffect } from 'react';
+import { getHeaderContent, HeaderContent } from '@/lib/strapi';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Header() {
   const { ref: textRef, inView: textInView } = useInView({ triggerOnce: true, threshold: 0.2 });
   const { ref: image1Ref, inView: image1InView } = useInView({ triggerOnce: true, threshold: 0.2 });
   const { ref: image2Ref, inView: image2InView } = useInView({ triggerOnce: true, threshold: 0.2 });
   const { ref: image3Ref, inView: image3InView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  
+  const [content, setContent] = useState<HeaderContent | null>(null);
+  const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
+
+  useEffect(() => {
+    async function fetchHeaderContent() {
+      try {
+        const data = await getHeaderContent(language);
+        setContent(data);
+      } catch (error) {
+        console.error('Error fetching header content:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchHeaderContent();
+  }, [language]); // Re-fetch when language changes
+
+  const defaultContent = {
+    title: 'Welcome to my Gallery',
+    subtitle: 'My name is Shoshi Haizler',
+    small: 'I love painting, drawing and sculpting.',
+    button: 'Enjoy your visit!'
+  };
+
+  const displayContent = content || defaultContent;
+
+  if (loading) {
+    return (
+      <section className="w-full h-screen flex items-center justify-center bg-[#f8f7f4]">
+        <div className="text-center">
+          <p className="text-gray-600">Loading header content...</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="w-full h-screen flex items-center justify-center bg-[#f8f7f4]">
@@ -19,10 +59,10 @@ export default function Header() {
           transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
           className="flex-1 flex flex-col justify-center items-start space-y-4"
         >
-          <h1 className="md:text-8xl font-semibold text-gray-800 mb-12">Welcome to my Gallery</h1>
-          <h3 className="text-gray-600 text-lg md:text-2xl mb-1">My name is Shoshi Haizler</h3>
-          <h3 className="text-gray-600 text-lg md:text-2xl mb-8">I love painting, drawing and sculpting.</h3>
-          <h5 className="text-gray-600 text-base md:text-lg">Enjoy your visit!</h5>
+          <h1 className="md:text-8xl font-semibold text-gray-800 mb-12">{displayContent.title}</h1>
+          <h3 className="w-[300px] text-gray-600 text-lg md:text-2xl mb-8">{displayContent.subtitle}</h3>
+          {/* <h3 className="text-gray-600 text-lg md:text-2xl mb-8">{displayContent.small}</h3> */}
+          <h5 className="text-gray-600 text-base md:text-lg">{displayContent.small}</h5>
         </motion.div>
         <div className="flex-1 flex items-center justify-center relative min-h-[82vh]">
           <motion.div 

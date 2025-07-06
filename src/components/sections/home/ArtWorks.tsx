@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Artwork } from '@/lib/strapi';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ArtWorksProps {
   artworks: Artwork[];
@@ -34,7 +35,7 @@ const categoryArtworks = [
 
 export default function ArtWorks({ artworks }: ArtWorksProps) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
-  console.log('Artworks from Strapi:', artworks);
+  const { language } = useLanguage();
 
   const displayArtworks = artworks.length > 0 
     ? artworks.slice(0, 4).map((artwork) => {
@@ -60,7 +61,7 @@ export default function ArtWorks({ artworks }: ArtWorksProps) {
         className="w-full h-screen flex flex-col items-center justify-center relative"
       >
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true" />
-        <h1 className="text-4xl font-bold text-gray-800 mb-12 z-10">My Artwork</h1>
+        <h1 className="text-4xl font-bold text-gray-800 mb-12 z-10">{language === 'he' ? 'העבודות שלי' : 'My Artwork'}</h1>
         <div className="flex flex-row gap-8 z-10">
           {displayArtworks.map((art, index) => (
             <Link

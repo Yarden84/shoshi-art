@@ -5,16 +5,25 @@ import { useLanguage } from '@/contexts/LanguageContext';
 export default function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage();
 
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'he' : 'en');
-  };
-
   return (
-    <button
-      onClick={toggleLanguage}
-      className="px-3 py-1 rounded border border-gray-300 bg-white hover:bg-gray-50 transition-colors text-sm font-medium"
-    >
-      {language === 'en' ? 'עברית' : 'English'}
-    </button>
+    <div className="flex items-center space-x-2"  style={{direction: 'ltr'}} > 
+      <button
+        onClick={() => setLanguage('en')}
+        className={`border-none font-[Art1-he] text-xs cursor-pointer hover:text-black ${
+          language === 'en' ? 'text-black' : 'text-gray-300'
+        }`}
+      >
+        EN
+      </button>
+      <span className='border-l-2 border-gray-300 h-4 ml-1'></span>
+      <button
+        onClick={() => setLanguage('he')}
+        className={`border-none font-[Art1-he] text-m pb-1 cursor-pointer hover:text-black ${
+          language === 'he' ? 'text-black' : 'text-gray-300'
+        }`}
+      >
+        עב
+      </button>
+    </div>
   );
 } 

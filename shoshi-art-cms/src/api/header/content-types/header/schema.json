@@ -1,10 +1,10 @@
 {
-  "kind": "collectionType",
-  "collectionName": "galleries",
+  "kind": "singleType",
+  "collectionName": "headers",
   "info": {
-    "singularName": "gallery",
-    "pluralName": "galleries",
-    "displayName": "gallery"
+    "singularName": "header",
+    "pluralName": "headers",
+    "displayName": "header"
   },
   "options": {
     "draftAndPublish": true
@@ -23,20 +23,21 @@
         }
       }
     },
-    "images": {
-      "type": "media",
+    "subtitle": {
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "multiple": true,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      }
+    },
+    "small": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

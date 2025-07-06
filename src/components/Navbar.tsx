@@ -4,16 +4,19 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '@/contexts/LanguageContext';
+
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { language } = useLanguage();
 
   const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Gallery', href: '/gallery' },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' },
+    { name: {en: 'Home', he: 'ראשי'}, href: '/' },
+    { name: {en: 'Gallery', he: 'גלריה'}, href: '/gallery' },
+    { name: {en: 'About', he: 'אודות'}, href: '/about' },
+    { name: {en: 'Contact', he: 'צור קשר'}, href: '/contact' },
   ];
 
   const toggleMenu = () => {
@@ -23,7 +26,7 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-lg fixed w-full top-0 z-50">
       <div className="max-w-[96%] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-16" style={{direction: 'ltr'}}>
           <div className="flex-shrink-0">
           <svg className='w-[120px] relative top-[7px]'  viewBox="0 0 609 287" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect y="46" width="535" height="116" fill="#FFF7CA" fillOpacity="0.72"/>
@@ -33,10 +36,10 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+            <div className="ml-10 flex items-baseline space-x-4"  style={{direction: language === 'he' ? 'rtl' : 'ltr'}}>
               {navLinks.map((link) => (
                 <Link
-                  key={link.name}
+                  key={link.name[language]}
                   href={link.href}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     pathname === link.href
@@ -44,10 +47,13 @@ export default function Navbar() {
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                   }`}
                 >
-                  {link.name}
+                  {link.name[language]}
                 </Link>
               ))}
-              <LanguageSwitcher />
+              <span className={`${language === 'he' ? 'order-first ml-[20px]' : ''}`}>
+
+                <LanguageSwitcher /> 
+              </span>
             </div>
           </div>
 
@@ -103,7 +109,7 @@ export default function Navbar() {
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg border-t border-gray-200">
           {navLinks.map((link, index) => (
             <Link
-              key={link.name}
+              key={link.name[language]}
               href={link.href}
               className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 transform ${
                 pathname === link.href
@@ -119,7 +125,7 @@ export default function Navbar() {
               }}
               onClick={() => setIsMenuOpen(false)}
             >
-              {link.name}
+              {link.name[language]}
             </Link>
           ))}
         </div>
