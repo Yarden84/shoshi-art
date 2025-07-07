@@ -11,7 +11,7 @@ export default function About() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
   const [content, setContent] = useState<AboutContent | null>(null);
   const [loading, setLoading] = useState(true);
-  const { language } = useLanguage();
+  const { language } = useLanguage(); // Get the current language from the LanguageContext
 
   useEffect(() => {
     async function fetchAboutContent() {
