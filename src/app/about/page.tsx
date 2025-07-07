@@ -64,7 +64,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="relative h-96 lg:h-full">
               <img
-                src="/images/about/1.jpg"
+                src="/images/about.jpg"
                 alt="Shoshi Haizler"
                 className="w-full h-full object-cover"
               />

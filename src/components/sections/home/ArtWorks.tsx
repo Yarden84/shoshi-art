@@ -13,22 +13,22 @@ interface ArtWorksProps {
 const categoryArtworks = [
   {
     title: 'Paintings',
-    img: '/images/gallery/painting-2.jpg',
+    img: '/images/header-1.jpg',
     href: '/gallery?filter=Paintings',
   },
   {
     title: 'Children',
-    img: '/images/gallery/children-1.jpg',
+    img: '/images/header-2.jpg',
     href: '/gallery?filter=Children',
   },
   {
     title: 'Sculpture',
-    img: '/images/gallery/sculpture-3.jpg',
+    img: '/images/header-3.jpg',
     href: '/gallery?filter=Sculpture',
   },
   {
     title: 'Other',
-    img: '/images/gallery/other-4.jpg',
+    img: '/images/header-4.jpg',
     href: '/gallery?filter=Other',
   },
 ];
@@ -61,15 +61,15 @@ export default function ArtWorks({ artworks }: ArtWorksProps) {
         className="w-full h-screen flex flex-col items-center justify-center relative"
       >
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true" />
-        <h1 className="text-4xl font-bold text-gray-800 mb-12 z-10">{language === 'he' ? 'העבודות שלי' : 'My Artwork'}</h1>
-        <div className="flex flex-row gap-8 z-10">
+        <h1 className="text-4xl text-gray-800 mb-12 z-10">{language === 'he' ? 'העבודות שלי' : 'My Artwork'}</h1>
+        <div className="flex flex-row flex-wrap justify-center gap-8 z-10">
           {displayArtworks.map((art, index) => (
             <Link
               key={index}
               href={art.href}
               className="group"
             >
-              <div className="w-[250px] h-[250px] rounded-lg shadow-lg border-4 border-white overflow-hidden flex items-center justify-center relative group">
+              <div className="w-64 h-64 max-md:w-48 max-md:h-48 rounded-lg shadow-lg border-4 border-white overflow-hidden flex items-center justify-center relative group">
                 <img
                   src={art.img}
                   alt={art.title}

@@ -21,13 +21,19 @@
 
 @font-face {
   font-family: 'Art1-he';
-  src: url('/fonts/MPLUSRounded1c-Regular.ttf') format('truetype');
+  src: url('/fonts/AmaticaSC-Regular.ttf') format('truetype');
   font-weight: 400;
 }
 
 @font-face {
   font-family: 'Art1-he';
-  src: url('/fonts/MPLUSRounded1c-Bold.ttf') format('truetype');
+  src: url('/fonts/Rubic-Medium.ttf') format('truetype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Art1-he';
+  src: url('/fonts/AmaticaSC-Bold.ttf') format('truetype');
   font-weight: 700;
 }
 
@@ -39,7 +45,7 @@
 
 @font-face {
   font-family: 'Art2-he';
-  src: url('/fonts/PlaypenSansHebrew-Regular.ttf') format('truetype');
+  src: url('/fonts/yehudaclm-light-webfont.ttf') format('truetype');
   font-weight: 400;
 }
 
@@ -73,7 +79,14 @@ h1, h2 {
   font-family: Art1, Art1-he, Arial, Helvetica, sans-serif;
   line-height: 1.3;
   letter-spacing: 0.1em;
-  font-weight: 400;
+  /* font-weight: 400; */
+}
+
+@media (max-width: 768px) {
+  h1 {
+    /* font-weight: 600; */
+    line-height: 1.5;
+  }
 }
 
 

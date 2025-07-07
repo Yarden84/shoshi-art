@@ -41,17 +41,16 @@ export default function Navbar() {
                 <Link
                   key={link.name[language]}
                   href={link.href}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-3 py-2 rounded-md transition-colors ${
                     pathname === link.href
                       ? 'text-gray-900 bg-gray-100'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                  }`}
+                  } ${language === 'he' ? 'font-4xl font-bold  tracking-[0.05em]' : 'text-sm'}`}
                 >
                   {link.name[language]}
                 </Link>
               ))}
               <span className={`${language === 'he' ? 'order-first ml-[20px]' : ''}`}>
-
                 <LanguageSwitcher /> 
               </span>
             </div>

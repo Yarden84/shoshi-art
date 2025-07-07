@@ -24,7 +24,7 @@ export default function Home() {
       }
     }
     fetchArtworks();
-  }, [language]); // Re-fetch when language changes
+  }, [language]); 
 
   if (loading) {
     return (

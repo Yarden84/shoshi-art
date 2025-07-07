@@ -25,7 +25,7 @@ export default function About() {
       }
     }
     fetchAboutContent();
-  }, [language]); // Re-fetch when language changes
+  }, [language]); 
 
   const defaultContent = {
     title: 'About Me',
@@ -69,20 +69,20 @@ export default function About() {
         transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
         className="w-full h-screen flex items-center justify-center"
       >
-        <div className="flex flex-col md:flex-row w-full max-w-6xl h-[70vh] shadow-lg rounded-lg overflow-hidden">
+        <div className="flex flex-col md:flex-row w-full max-md:w-92 max-w-6xl h-[70vh] max-md:h-[82vh] shadow-lg rounded-lg overflow-hidden">
           <div className="relative w-full md:w-1/2 h-64 md:h-auto flex-shrink-0">
             <img
-              src="/images/about/1.jpg"
+              src="/images/about.jpg"
               alt="Shoshi Haizler working on sculpture"
               className="w-full h-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-[#e2b24a]/80 mix-blend-multiply" />
           </div>
           <div className="w-full md:w-1/2 flex flex-col justify-center items-start p-8 bg-white">
-            <h2 className="uppercase tracking-widest text-gray-700 text-sm mb-4">
+            <h2 className={`uppercase tracking-widest text-gray-700 ${language === 'he' ? 'text-2xl' : 'text-sm'} mb-4`}>
               {displayContent.title}
             </h2>
-            <p className="text-2xl md:text-3xl font-light text-gray-800 mb-8 leading-snug" style={{ display: '-webkit-box', WebkitLineClamp: 7, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+            <p className={`text-2xl ${language === 'he' ? 'md:text-2xl' : 'md:text-3xl'} font-light text-gray-800 mb-8 leading-snug`} style={{ display: '-webkit-box', WebkitLineClamp: 7, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
               {truncatedContent}
             </p>
             <Link href="/about">
