@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Artwork } from '@/lib/strapi';
+import { GalleryItem } from '@/lib/cms';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ArtWorksProps {
-  artworks: Artwork[];
+  artworks: GalleryItem[];
 }
 
 const categoryArtworks = [
@@ -42,7 +42,7 @@ export default function ArtWorks({ artworks }: ArtWorksProps) {
         return {
           title: artwork.title || 'Untitled',
           img: artwork?.images?.[0]
-            ? `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${artwork.images[0].url}`
+            ? artwork.images[0].url
             : '/images/gallery/painting-2.jpg',
           href: `/gallery?filter=${artwork.title || 'Untitled'}`,
         };

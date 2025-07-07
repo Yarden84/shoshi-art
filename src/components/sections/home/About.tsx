@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { AboutContent, getAboutContent } from '@/lib/strapi';
+import { AboutContent, getAboutContent } from '@/lib/cms';
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 

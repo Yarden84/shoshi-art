@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en"><head><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script></head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

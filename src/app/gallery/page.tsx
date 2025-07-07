@@ -3,31 +3,30 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import FilterDropdown from '@/components/FilterDropdown';
-import { getArtworks, StrapiImage } from '@/lib/strapi';
-import { Artwork } from '@/lib/strapi';
+import { getGalleryItems, GalleryItem } from '@/lib/cms';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function GalleryPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [filter, setFilter] = useState('All');
-  const [artworks, setArtworks] = useState<Artwork[]>([]);
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const { language } = useLanguage();
 
-  const generateFilterOptions = (artworks: Artwork[]): string[] => {
+  const generateFilterOptions = (galleryItems: GalleryItem[]): string[] => {
     const categories = new Set<string>();
     
-    artworks.forEach(artwork => {
-      if (artwork.title) {
-        categories.add(artwork.title);
+    galleryItems.forEach(galleryItem => {
+      if (galleryItem.title) {
+        categories.add(galleryItem.title);
       }
     });
     
     return ['All', ...Array.from(categories).sort()];
   };
 
-  const filterOptions = generateFilterOptions(artworks);
+  const filterOptions = generateFilterOptions(galleryItems);
 
   useEffect(() => {
     const urlFilter = searchParams.get('filter');
@@ -40,17 +39,17 @@ export default function GalleryPage() {
   }, [searchParams, filterOptions]);
 
   useEffect(() => {
-    async function fetchArtworks() {
+    async function fetchGalleryItems() {
       try {
-        const data = await getArtworks(language);
-        setArtworks(data);
+        const data = await getGalleryItems();
+        setGalleryItems(data);
       } catch (error) {
-        console.error('Error fetching artworks:', error);
+        console.error('Error fetching gallery items:', error);
       } finally {
         setLoading(false);
       }
     }
-    fetchArtworks();
+    fetchGalleryItems();
   }, [language]); 
 
   const handleFilterChange = (value: string) => {
@@ -65,16 +64,16 @@ export default function GalleryPage() {
     router.replace(`?${params.toString()}`);
   };
 
-  const filteredArtworks = filter === 'All'
-    ? artworks
-    : artworks.filter(artwork => artwork.title === filter);
+  const filteredGalleryItems = filter === 'All'
+    ? galleryItems
+    : galleryItems.filter(galleryItem => galleryItem.title === filter);
 
-  const allImages: Array<{ artwork: Artwork; image: StrapiImage; imageIndex: number }> = [];
+  const allImages: Array<{ galleryItem: GalleryItem; image: { url: string }; imageIndex: number }> = [];
   
-  filteredArtworks.forEach(artwork => {
-    if (artwork.images && artwork.images.length > 0) {
-      artwork.images.forEach((image, imageIndex) => {
-        allImages.push({ artwork, image, imageIndex });
+  filteredGalleryItems.forEach(galleryItem => {
+    if (galleryItem.images && galleryItem.images.length > 0) {
+      galleryItem.images.forEach((image, imageIndex) => {
+        allImages.push({ galleryItem, image, imageIndex });
       });
     }
   });
@@ -84,7 +83,7 @@ export default function GalleryPage() {
       <div className="min-h-screen bg-gray-50 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-gray-600">Loading artworks...</p>
+            <p className="text-gray-600">Loading gallery items...</p>
           </div>
         </div>
       </div>
@@ -107,18 +106,18 @@ export default function GalleryPage() {
           <div className="text-center py-12">
             <p className="text-gray-500">
               {filter === 'All' 
-                ? (language === 'he' ? 'אין יצירות זמינות עדיין.' : 'No artworks available yet.')
-                : (language === 'he' ? `לא נמצאו יצירות עבור ${filter}.` : `No artworks found for ${filter}.`)
+                ? (language === 'he' ? 'אין יצירות זמינות עדיין.' : 'No gallery items available yet.')
+                : (language === 'he' ? `לא נמצאו יצירות עבור ${filter}.` : `No gallery items found for ${filter}.`)
               }
             </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {allImages.map(({ artwork, image, imageIndex }) => (
-              <div key={`${artwork.id}-${imageIndex}`} className="w-full aspect-square rounded-lg overflow-hidden shadow-lg border border-gray-100 bg-gray-50 flex items-center justify-center group border-4 border-white">
+            {allImages.map(({ galleryItem, image, imageIndex }) => (
+              <div key={`${galleryItem.title}-${imageIndex}`} className="w-full aspect-square rounded-lg overflow-hidden shadow-lg border border-gray-100 bg-gray-50 flex items-center justify-center group border-4 border-white">
                 <img
-                  src={`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${image.url}`}
-                  alt={`${artwork.title || 'Artwork'} - Image ${imageIndex + 1}`}
+                  src={image.url}
+                  alt={`${galleryItem.title || 'Gallery Item'} - Image ${imageIndex + 1}`}
                   className="h-full animate-none group-hover:scale-110 transition-all duration-700"
                   loading="lazy"
                 />

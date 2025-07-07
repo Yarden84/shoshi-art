@@ -4,18 +4,18 @@ import { useState, useEffect } from 'react';
 import Header from "@/components/sections/home/Header";
 import ArtWorks from "@/components/sections/home/ArtWorks";
 import About from "@/components/sections/home/About";
-import { getArtworks, Artwork } from "@/lib/strapi";
+import { getGalleryItems, GalleryItem } from "@/lib/cms";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Home() {
-  const [artworks, setArtworks] = useState<Artwork[]>([]);
+  const [artworks, setArtworks] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const { language } = useLanguage();
 
   useEffect(() => {
     async function fetchArtworks() {
       try {
-        const data = await getArtworks(language);
+        const data = await getGalleryItems();
         setArtworks(data);
       } catch (error) {
         console.error('Error fetching artworks:', error);

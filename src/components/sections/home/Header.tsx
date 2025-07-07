@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useState, useEffect } from 'react';
-import { getHeaderContent, HeaderContent } from '@/lib/strapi';
+import { getHeaderContent, HeaderContent } from '@/lib/cms';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Header() {
