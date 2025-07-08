@@ -12,6 +12,16 @@
         }
       ],
       "date": "2025-07-08T18:07:00.000Z"
+    },
+    {
+      "title": "sculpture",
+      "category": "sculpture",
+      "date": "2025-07-08T18:31:00.000Z",
+      "images": [
+        {
+          "url": "/images/uploads/img-20200703-wa0014.jpg"
+        }
+      ]
     }
   ]
 }
