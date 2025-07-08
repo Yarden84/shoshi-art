@@ -1,3 +1,17 @@
 {
-  "items": []
+  "items": [
+    {
+      "title": "paintings",
+      "category": "paintings",
+      "images": [
+        {
+          "url": "/images/uploads/20180501_123141.jpg"
+        },
+        {
+          "url": "/images/uploads/20200812_120724.jpg"
+        }
+      ],
+      "date": "2025-07-08T18:07:00.000Z"
+    }
+  ]
 }
