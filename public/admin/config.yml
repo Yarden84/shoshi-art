@@ -52,9 +52,8 @@ collections:
 
   - name: "gallery"
     label: "Gallery"
-    folder: "public/data/gallery"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    file: "public/data/gallery.json"
+    format: "json"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Category", name: "category", widget: "string" }
