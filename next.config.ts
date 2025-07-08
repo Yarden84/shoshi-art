@@ -1,9 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    typedRoutes: true,
-  },
   webpack: (config) => {
     config.externals = config.externals || [];
     config.externals.push({
