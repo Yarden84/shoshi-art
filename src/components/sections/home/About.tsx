@@ -19,7 +19,7 @@ export default function About() {
         const data = await getAboutContent(language);
         setContent(data);
       } catch (error) {
-        console.error('Error fetching about content:', error);
+        console.error('Error:', error);
       } finally {
         setLoading(false);
       }
