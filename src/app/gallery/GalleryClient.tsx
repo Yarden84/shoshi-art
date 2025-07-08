@@ -28,12 +28,9 @@ export default function GalleryClient({ galleryItems }: { galleryItems: GalleryI
   filteredGalleryItems.forEach(galleryItem => {
     if (galleryItem.images && galleryItem.images.length > 0) {
       galleryItem.images.forEach((image, imageIndex) => {
-        console.log("image: ");
-        console.log(image);
-        let url = { url: process.env.NEXT_PUBLIC_IMAGES_URL + image.url};
-        console.log("url: ");
-        console.log(url);
-        allImages.push({ galleryItem, image: url, imageIndex });
+        console.log("image.url: ");
+        console.log(image.url);
+        allImages.push({ galleryItem, image, imageIndex });
       });
     }
   });

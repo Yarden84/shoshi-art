@@ -18,6 +18,5 @@ export default async function GalleryPage() {
   const galleryItems = await getGalleryItems();
   console.log("galleryItems1: ");
     console.log(galleryItems);
-    // console.log(process.env.NEXT_PUBLIC_SITE_URL);
   return <GalleryClient galleryItems={galleryItems} />;
 } 
