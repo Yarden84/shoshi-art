@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import FilterDropdown from '@/components/FilterDropdown';
 import { getGalleryItems, GalleryItem } from '@/lib/cms';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-export default function GalleryPage() {
+function GalleryPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [filter, setFilter] = useState('All');
@@ -127,5 +127,21 @@ export default function GalleryPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function GalleryPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-gray-600">Loading gallery...</p>
+          </div>
+        </div>
+      </div>
+    }>
+      <GalleryPageContent />
+    </Suspense>
   );
 } 
