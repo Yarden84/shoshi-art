@@ -6,26 +6,10 @@
       "images": [
         {
           "url": "/images/uploads/20180501_123141.jpg"
-        },
-        {
-          "url": "/images/uploads/20200812_120724.jpg"
         }
       ],
       "date": "2025-07-08T18:07:00.000Z",
       "description": "dsa"
-    },
-    {
-      "title": "sculpture",
-      "category": "sculpture",
-      "date": "2025-07-08T18:31:00.000Z",
-      "images": [
-        {
-          "url": "/images/uploads/img-20200703-wa0014.jpg"
-        },
-        {
-          "url": "/images/uploads/20190703_190231.jpg"
-        }
-      ]
     }
   ]
 }
