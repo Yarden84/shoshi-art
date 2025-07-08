@@ -52,7 +52,7 @@ collections:
 
   - name: "gallery"
     label: "Gallery"
-    folder: "public/data/gallery.json"
+    folder: "public/data/gallery"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
