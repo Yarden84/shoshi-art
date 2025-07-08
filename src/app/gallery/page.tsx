@@ -4,15 +4,20 @@ import GalleryClient from './GalleryClient';
 async function getGalleryItems(): Promise<GalleryItem[]> {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || ''}/data/gallery.json`, { cache: 'no-store' });
+
     if (!res.ok) return [];
     const data = await res.json();
+
     return data.items || [];
-  } catch {
-    return [];
+  } catch(error) {
+    return []
   }
 }
 
 export default async function GalleryPage() {
   const galleryItems = await getGalleryItems();
+  console.log("galleryItems1: ");
+    console.log(galleryItems);
+    // console.log(process.env.NEXT_PUBLIC_SITE_URL);
   return <GalleryClient galleryItems={galleryItems} />;
 } 

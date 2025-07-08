@@ -49,6 +49,7 @@ export interface HeaderContent {
   export async function getGalleryItems(): Promise<GalleryItem[]> {
     try {
       const response = await fetch('/data/gallery.json');
+
       if (!response.ok) {
         throw new Error('Failed to fetch gallery items');
       }

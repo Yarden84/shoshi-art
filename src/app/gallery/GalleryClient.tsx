@@ -9,9 +9,13 @@ export default function GalleryClient({ galleryItems }: { galleryItems: GalleryI
 
   const generateFilterOptions = (galleryItems: GalleryItem[]): string[] => {
     const categories = new Set<string>();
+    
     galleryItems.forEach(galleryItem => {
       if (galleryItem.title) categories.add(galleryItem.title);
     });
+    console.log("galleryItems: ");
+    console.log(galleryItems);
+    
     return ['All', ...Array.from(categories).sort()];
   };
 
@@ -24,7 +28,12 @@ export default function GalleryClient({ galleryItems }: { galleryItems: GalleryI
   filteredGalleryItems.forEach(galleryItem => {
     if (galleryItem.images && galleryItem.images.length > 0) {
       galleryItem.images.forEach((image, imageIndex) => {
-        allImages.push({ galleryItem, image, imageIndex });
+        console.log("image: ");
+        console.log(image);
+        let url = { url: process.env.NEXT_PUBLIC_IMAGES_URL + image.url};
+        console.log("url: ");
+        console.log(url);
+        allImages.push({ galleryItem, image: url, imageIndex });
       });
     }
   });
