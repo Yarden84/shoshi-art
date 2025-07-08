@@ -13,7 +13,7 @@ collections:
     files:
       - name: "header-en"
         label: "Header (English)"
-        file: "data/header-en.json"
+        file: "public/data/header-en.json"
         format: "json"
         fields:
           - { label: "Title", name: "title", widget: "string" }
@@ -21,7 +21,7 @@ collections:
           - { label: "Small Text", name: "small", widget: "string" }
       - name: "header-he"
         label: "Header (Hebrew)"
-        file: "data/header-he.json"
+        file: "public/data/header-he.json"
         format: "json"
         fields:
           - { label: "Title", name: "title", widget: "string" }
@@ -33,7 +33,7 @@ collections:
     files:
       - name: "about-en"
         label: "About (English)"
-        file: "data/about-en.json"
+        file: "public/data/about-en.json"
         format: "json"
         fields:
           - { label: "Title", name: "title", widget: "string" }
@@ -42,7 +42,7 @@ collections:
           - { label: "Bio", name: "bio", widget: "markdown", required: false }
       - name: "about-he"
         label: "About (Hebrew)"
-        file: "data/about-he.json"
+        file: "public/data/about-he.json"
         format: "json"
         fields:
           - { label: "Title", name: "title", widget: "string" }
@@ -52,7 +52,7 @@ collections:
 
   - name: "gallery"
     label: "Gallery"
-    folder: "data/gallery"
+    folder: "public/data/gallery"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
