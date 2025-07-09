@@ -1,13 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import FilterDropdown from '@/components/FilterDropdown';
 import { GalleryItem } from '@/lib/cms';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function GalleryClient({ galleryItems }: { galleryItems: GalleryItem[] }) {
-  const [filter, setFilter] = useState('All');
+  const searchParams = useSearchParams();
   const { language } = useLanguage();
+  
+  const urlFilter = searchParams.get('filter');
+  const [filter, setFilter] = useState('All');
+
+  useEffect(() => {
+    if (urlFilter) {
+      setFilter(urlFilter);
+    }
+  }, [urlFilter]);
 
   const generateFilterOptions = (galleryItems: GalleryItem[]): string[] => {
     const categories = new Set<string>();

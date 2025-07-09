@@ -7,44 +7,45 @@ import { GalleryItem } from '@/lib/cms';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ArtWorksProps {
-  artworks: GalleryItem[];
+  artworks: { items: GalleryItem[] };
 }
 
 const categoryArtworks = [
   {
     title: 'Paintings',
     img: '/images/header-1.jpg',
-    href: '/gallery?filter=Paintings',
+    href: '/gallery?filter=paintings',
   },
   {
     title: 'Children',
     img: '/images/header-2.jpg',
-    href: '/gallery?filter=Children',
+    href: '/gallery?filter=children',
   },
   {
     title: 'Sculpture',
     img: '/images/header-3.jpg',
-    href: '/gallery?filter=Sculpture',
+    href: '/gallery?filter=sculpture',
   },
   {
     title: 'Other',
     img: '/images/header-4.jpg',
-    href: '/gallery?filter=Other',
+    href: '/gallery?filter=other',
   },
 ];
 
 export default function ArtWorks({ artworks }: ArtWorksProps) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
   const { language } = useLanguage();
-
-  const displayArtworks = artworks.length > 0 
-    ? artworks.slice(0, 4).map((artwork) => {
+  console.log("artworks: ", artworks);
+  console.log("artworks.items.length: ", artworks?.items?.length);
+  const displayArtworks = artworks?.items?.length > 0 
+    ? artworks.items.map((artwork) => {
         return {
-          title: artwork.title || 'Untitled',
+          title: (language === 'he' ? artwork.title_he : artwork.title) || 'Untitled',
           img: artwork?.images?.[0]
             ? artwork.images[0].url
             : '/images/gallery/painting-2.jpg',
-          href: `/gallery?filter=${artwork.title || 'Untitled'}`,
+          href: `/gallery?filter=${artwork.title || 'untitled'}`,
         };
       })
     : categoryArtworks;

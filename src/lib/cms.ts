@@ -47,7 +47,7 @@ export interface HeaderContent {
     }
   }
   
-  export async function getGalleryItems(): Promise<GalleryItem[]> {
+  export async function getGalleryItems(): Promise<{ items: GalleryItem[] }> {
     try {
       const response = await fetch('/data/gallery.json');
 
@@ -57,6 +57,6 @@ export interface HeaderContent {
       return response.json();
     } catch (error) {
       console.error('Error fetching gallery items:', error);
-      return [];
+      return { items: [] };
     }
   }
