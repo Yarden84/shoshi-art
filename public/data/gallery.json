@@ -5,27 +5,29 @@
       "category": "paintings",
       "images": [
         {
-          "url": "/images/uploads/20240921_130810.jpg"
+          "url": "/images/uploads/painting-1.jpg"
         },
         {
-          "url": "/images/uploads/20210117_094102.jpg"
+          "url": "/images/uploads/painting-2.jpg"
         }
       ],
       "date": "2025-07-08T18:07:00.000Z",
-      "description": ""
+      "description": "",
+      "title_he": "ציורים"
     },
     {
       "title": "sculpture",
       "category": "sculpture",
       "images": [
         {
-          "url": "/images/uploads/20190703_190231.jpg"
+          "url": "/images/uploads/sculpture-1.jpg"
         },
         {
-          "url": "/images/uploads/img-20200427-wa0000.jpg"
+          "url": "/images/uploads/sculpture-3.jpg"
         }
       ],
-      "date": "2025-07-09T14:15:00.000Z"
+      "date": "2025-07-09T14:15:00.000Z",
+      "title_he": "פיסול"
     }
   ]
 }
