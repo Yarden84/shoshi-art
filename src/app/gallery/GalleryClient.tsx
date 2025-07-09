@@ -32,6 +32,14 @@ export default function GalleryClient({ galleryItems }: { galleryItems: GalleryI
   };
 
   const filterOptions = generateFilterOptions(galleryItems);
+
+  // Reset filter when language changes and current filter is not valid
+  useEffect(() => {
+    if (!filterOptions.includes(filter)) {
+      setFilter('All');
+    }
+  }, [language, filterOptions, filter]);
+
   const filteredGalleryItems = filter === 'All'
     ? galleryItems
     : galleryItems.filter(galleryItem => language === 'en' ? galleryItem.title === filter : galleryItem.title_he === filter);

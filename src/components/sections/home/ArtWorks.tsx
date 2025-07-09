@@ -45,7 +45,7 @@ export default function ArtWorks({ artworks }: ArtWorksProps) {
           img: artwork?.images?.[0]
             ? artwork.images[0].url
             : '/images/gallery/painting-2.jpg',
-          href: `/gallery?filter=${artwork.title || 'untitled'}`,
+          href: `/gallery?filter=${language === 'he' ? artwork.title_he : artwork.title || 'untitled'}`,
         };
       })
     : categoryArtworks;
