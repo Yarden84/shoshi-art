@@ -16,7 +16,6 @@ async function getGalleryItems(): Promise<GalleryItem[]> {
 
 export default async function GalleryPage() {
   const galleryItems = await getGalleryItems();
-  console.log("galleryItems1: ");
-    console.log(galleryItems);
+
   return <GalleryClient galleryItems={galleryItems} />;
 } 
