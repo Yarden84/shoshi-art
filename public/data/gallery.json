@@ -15,6 +15,79 @@
         },
         {
           "url": "/images/uploads/painting-4.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-5.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-6.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-7.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-8.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-9.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-10.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-11.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-12.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-13.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-14.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-15.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-16.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-17.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-18.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-19.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-20.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-21.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-22.jpg"
+        }
+        ,
+        {
+          "url": "/images/uploads/painting-23.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-24.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-25.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-26.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-27.jpg"
+        },
+        {
+          "url": "/images/uploads/painting-28.jpg"
         }
       ],
       "date": "2025-07-08T18:07:00.000Z",
@@ -30,10 +103,101 @@
         },
         {
           "url": "/images/uploads/sculpture-3.jpg"
+        },
+        {
+          "url": "/images/uploads/sculpture-4.jpg"
+        },
+        {
+          "url": "/images/uploads/sculpture-5.jpg"
+        },
+        {
+          "url": "/images/uploads/sculpture-8.jpg"
+        },
+        {
+          "url": "/images/uploads/sculpture-9.jpg"
+        },
+        {
+          "url": "/images/uploads/sculpture-10.jpg"
+        },
+        {
+          "url": "/images/uploads/sculpture-11.jpg"
+        },
+        {
+          "url": "/images/uploads/sculpture-12.jpg"
+        },
+        {
+          "url": "/images/uploads/sculpture-13.jpg"
         }
       ],
       "date": "2025-07-09T14:15:00.000Z",
       "title_he": "פיסול"
+    },
+    {
+      "title": "children",
+      "category": "children",
+      "images": [
+        {
+          "url": "/images/uploads/children-1.jpg"
+        },
+        {
+          "url": "/images/uploads/children-2.jpg"
+        },
+        {
+          "url": "/images/uploads/children-3.jpg"
+        },
+        {
+          "url": "/images/uploads/children-4.jpg"
+        },
+        {
+          "url": "/images/uploads/children-5.jpg"
+        },
+        {
+          "url": "/images/uploads/children-8.jpg"
+        },
+        {
+          "url": "/images/uploads/children-9.jpg"
+        },
+        {
+          "url": "/images/uploads/children-10.jpg"
+        },
+        {
+          "url": "/images/uploads/children-11.jpg"
+        },
+        {
+          "url": "/images/uploads/children-12.jpg"
+        }
+      ],
+      "date": "2025-07-09T14:16:00.000Z",
+      "title_he": "ילדים"
+    },
+    {
+      "title": "other",
+      "category": "other",
+      "images": [
+        {
+          "url": "/images/uploads/other-1.jpg"
+        },
+        {
+          "url": "/images/uploads/other-2.jpg"
+        },
+        {
+          "url": "/images/uploads/other-3.jpg"
+        },
+        {
+          "url": "/images/uploads/other-4.jpg"
+        },
+        {
+          "url": "/images/uploads/other-5.jpg"
+        },
+        {
+          "url": "/images/uploads/other-8.jpg"
+        },
+        {
+          "url": "/images/uploads/other-9.jpg"
+        }
+      ],
+      "date": "2025-07-09T14:17:00.000Z",
+      "title_he": "אחר"
     }
   ]
 }
