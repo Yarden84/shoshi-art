@@ -3,15 +3,17 @@
 import { useState } from 'react';
 import FilterDropdown from '@/components/FilterDropdown';
 import { GalleryItem } from '@/lib/cms';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function GalleryClient({ galleryItems }: { galleryItems: GalleryItem[] }) {
   const [filter, setFilter] = useState('All');
+  const { language } = useLanguage();
 
   const generateFilterOptions = (galleryItems: GalleryItem[]): string[] => {
     const categories = new Set<string>();
     
     galleryItems.forEach(galleryItem => {
-      if (galleryItem.title) categories.add(galleryItem.title);
+      if (galleryItem.title) categories.add(language === 'en' ? galleryItem.title : galleryItem.title_he);
     });
     console.log("galleryItems: ");
     console.log(galleryItems);
@@ -22,14 +24,12 @@ export default function GalleryClient({ galleryItems }: { galleryItems: GalleryI
   const filterOptions = generateFilterOptions(galleryItems);
   const filteredGalleryItems = filter === 'All'
     ? galleryItems
-    : galleryItems.filter(galleryItem => galleryItem.title === filter);
+    : galleryItems.filter(galleryItem => language === 'en' ? galleryItem.title === filter : galleryItem.title_he === filter);
 
   const allImages: Array<{ galleryItem: GalleryItem; image: { url: string }; imageIndex: number }> = [];
   filteredGalleryItems.forEach(galleryItem => {
     if (galleryItem.images && galleryItem.images.length > 0) {
       galleryItem.images.forEach((image, imageIndex) => {
-        console.log("image.url: ");
-        console.log(image.url);
         allImages.push({ galleryItem, image, imageIndex });
       });
     }
@@ -39,7 +39,7 @@ export default function GalleryClient({ galleryItems }: { galleryItems: GalleryI
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-row items-center justify-between mb-8">
-          <h1 className="text-4xl font-bold text-gray-800">Gallery</h1>
+          <h1 className="text-4xl font-bold text-gray-800">{language === 'en' ? 'Gallery' : 'גלריה'}</h1>
           <FilterDropdown
             options={filterOptions}
             value={filter}

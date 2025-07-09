@@ -14,6 +14,7 @@ export interface HeaderContent {
   
   export interface GalleryItem {
     title: string;
+    title_he: string;
     category: string;
     images: Array<{ url: string }>;
     description?: string;
