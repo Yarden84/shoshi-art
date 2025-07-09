@@ -58,9 +58,13 @@ collections:
         file: "public/data/gallery.json"
         format: "json"
         fields:
-          - { label: "Title (English)", name: "title_en", widget: "string" }
-          - { label: "Title (Hebrew)", name: "title_he", widget: "string" }
-          - { label: "Category", name: "category", widget: "string" }
-          - { label: "Images", name: "images", widget: "list", fields: [{ label: "Image", name: "url", widget: "image" }] }
-          - { label: "Description", name: "description", widget: "text", required: false }
-          - { label: "Date", name: "date", widget: "datetime" }
+          - label: "Gallery Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Title (English)", name: "title", widget: "string" }
+              - { label: "Title (Hebrew)", name: "title_he", widget: "string" }
+              - { label: "Category", name: "category", widget: "string" }
+              - { label: "Images", name: "images", widget: "list", fields: [{ label: "Image", name: "url", widget: "image" }] }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Date", name: "date", widget: "datetime" }
