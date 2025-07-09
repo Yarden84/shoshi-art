@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { GalleryItem } from '@/lib/cms';
 import GalleryClient from './GalleryClient';
 
@@ -17,5 +18,9 @@ async function getGalleryItems(): Promise<GalleryItem[]> {
 export default async function GalleryPage() {
   const galleryItems = await getGalleryItems();
 
-  return <GalleryClient galleryItems={galleryItems} />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <GalleryClient galleryItems={galleryItems} />
+    </Suspense>
+  );
 } 

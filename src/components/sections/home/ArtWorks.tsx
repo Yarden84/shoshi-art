@@ -7,7 +7,7 @@ import { GalleryItem } from '@/lib/cms';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ArtWorksProps {
-  artworks: { items: GalleryItem[] };
+  artworks: GalleryItem[];
 }
 
 const categoryArtworks = [
@@ -37,9 +37,9 @@ export default function ArtWorks({ artworks }: ArtWorksProps) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
   const { language } = useLanguage();
   console.log("artworks: ", artworks);
-  console.log("artworks.items.length: ", artworks?.items?.length);
-  const displayArtworks = artworks?.items?.length > 0 
-    ? artworks.items.map((artwork) => {
+  console.log("artworks.items.length: ", artworks?.length);
+  const displayArtworks = artworks.length > 0 
+    ? artworks.map((artwork) => {
         return {
           title: (language === 'he' ? artwork.title_he : artwork.title) || 'Untitled',
           img: artwork?.images?.[0]
