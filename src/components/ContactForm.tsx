@@ -50,7 +50,7 @@ export default function ContactForm() {
       />
       <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className={`text-4xl text-gray-900 mb-4 ${language === 'he' ? 'font-bold' : ''}`}>
             {language === 'he' ? 'צור קשר' : 'Contact Me'}
           </h1>
           <p className="text-lg text-gray-600">
@@ -86,10 +86,8 @@ export default function ContactForm() {
           <form 
             name="contact"
             method="POST"
-            data-netlify="true"
             className="space-y-4"
           >
-            {/* <input type="hidden" data-netlify="true" /> */}
             <input type="hidden" name="form-name" value="contact" />
             <div className="hidden">
               <input name="bot-field" />
