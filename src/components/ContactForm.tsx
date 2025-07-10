@@ -8,32 +8,32 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
+  //   setSubmitStatus('idle');
 
-    const formData = new FormData(e.currentTarget);
+  //   const formData = new FormData(e.currentTarget);
     
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString(),
-      });
+  //   try {
+  //     const response = await fetch('/', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  //       body: new URLSearchParams(formData as any).toString(),
+  //     });
 
-      if (response.ok) {
-        setSubmitStatus('success');
-        e.currentTarget.reset();
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  //     if (response.ok) {
+  //       setSubmitStatus('success');
+  //       e.currentTarget.reset();
+  //     } else {
+  //       setSubmitStatus('error');
+  //     }
+  //   } catch (error) {
+  //     setSubmitStatus('error');
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
 
   return (
     <div className="relative min-h-screen bg-gray-50 py-12 overflow-hidden">
@@ -84,10 +84,8 @@ export default function ContactForm() {
           )}
 
           <form 
-            name="contact" 
-            method="POST"
-            data-netlify-honeypot="bot-field"
-            onSubmit={handleSubmit}
+            name="contact"
+            netlify
             className="space-y-4"
           >
             <input type="hidden" data-netlify="true" />
