@@ -1,4 +1,4 @@
-export default function ContactForm({ language }: { language: string }) {
+export default function ContactForm() {
   return (
           <form 
             name="contact"
@@ -20,7 +20,7 @@ export default function ContactForm({ language }: { language: string }) {
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                {language === 'he' ? 'שם' : 'Name'}
+                Name
               </label>
               <input
                 type="text"
@@ -35,7 +35,7 @@ export default function ContactForm({ language }: { language: string }) {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                {language === 'he' ? 'אימייל' : 'Email'}
+                Email
               </label>
               <input
                 type="email"
@@ -50,7 +50,7 @@ export default function ContactForm({ language }: { language: string }) {
                 htmlFor="subject"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                {language === 'he' ? 'נושא' : 'Subject'}
+                Subject
               </label>
               <input
                 type="text"
@@ -65,7 +65,7 @@ export default function ContactForm({ language }: { language: string }) {
                 htmlFor="message"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                {language === 'he' ? 'הודעה' : 'Message'}
+                Message
               </label>
               <textarea
                 id="message"
@@ -79,7 +79,7 @@ export default function ContactForm({ language }: { language: string }) {
               type="submit"
               className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
             >
-              {language === 'he' ? 'שלח הודעה' : 'Send Message'}
+              Send Message
             </button>
           </form>
   );
