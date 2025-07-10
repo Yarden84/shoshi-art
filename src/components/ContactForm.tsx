@@ -16,14 +16,14 @@ export default function ContactForm({ language }: { language: string }) {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(formData as any).toString(),
       });
-      router.push('/thank-you');
-      // if (response.ok) {
-      //   setStatus('success');
-      //   event.currentTarget.reset();
+      if (response.ok) {
+        setStatus('success');
+        router.push('/thank-you');
+        // event.currentTarget.reset();
 
-      // } else {
-      //   setStatus('error');
-      // }
+      } else {
+        setStatus('error');
+      }
     } catch {
       setStatus('error');
     }
