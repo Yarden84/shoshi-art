@@ -1,39 +1,9 @@
 'use client';
 
-import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function ContactForm() {
   const { language } = useLanguage();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true);
-  //   setSubmitStatus('idle');
-
-  //   const formData = new FormData(e.currentTarget);
-    
-  //   try {
-  //     const response = await fetch('/', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-  //       body: new URLSearchParams(formData as any).toString(),
-  //     });
-
-  //     if (response.ok) {
-  //       setSubmitStatus('success');
-  //       e.currentTarget.reset();
-  //     } else {
-  //       setSubmitStatus('error');
-  //     }
-  //   } catch (error) {
-  //     setSubmitStatus('error');
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
 
   return (
     <div className="relative min-h-screen bg-gray-50 py-12 overflow-hidden">
@@ -61,28 +31,6 @@ export default function ContactForm() {
           </p>
         </div>
         <div className="bg-white rounded-lg shadow-lg p-8">
-          {submitStatus === 'success' && (
-            <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-md">
-              <p className="text-green-800">
-                {language === 'he' 
-                  ? 'ההודעה נשלחה בהצלחה! נחזור אליך בקרוב.'
-                  : 'Message sent successfully! We\'ll get back to you soon.'
-                }
-              </p>
-            </div>
-          )}
-          
-          {submitStatus === 'error' && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-red-800">
-                {language === 'he' 
-                  ? 'אירעה שגיאה בשליחת ההודעה. אנא נסה שוב.'
-                  : 'An error occurred while sending the message. Please try again.'
-                }
-              </p>
-            </div>
-          )}
-
           <form 
             name="contact"
             method="POST"
@@ -97,7 +45,6 @@ export default function ContactForm() {
                 Don’t fill this out if you’re human: <input name="bot-field" />
               </label>
             </p>
-            
             <div>
               <label
                 htmlFor="name"
@@ -111,7 +58,6 @@ export default function ContactForm() {
                 name="name"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
-                disabled={isSubmitting}
               />
             </div>
             <div>
@@ -127,7 +73,6 @@ export default function ContactForm() {
                 name="email"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
-                disabled={isSubmitting}
               />
             </div>
             <div>
@@ -143,7 +88,6 @@ export default function ContactForm() {
                 name="subject"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
-                disabled={isSubmitting}
               />
             </div>
             <div>
@@ -159,18 +103,13 @@ export default function ContactForm() {
                 rows={4}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
-                disabled={isSubmitting}
               ></textarea>
             </div>
             <button
               type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
             >
-              {isSubmitting 
-                ? (language === 'he' ? 'שולח...' : 'Sending...')
-                : (language === 'he' ? 'שלח הודעה' : 'Send Message')
-              }
+              {language === 'he' ? 'שלח הודעה' : 'Send Message'}
             </button>
           </form>
         </div>
