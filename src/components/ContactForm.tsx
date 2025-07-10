@@ -18,7 +18,7 @@ export default function ContactForm({ language }: { language: string }) {
       });
       if (response.ok) {
         setStatus('success');
-        event.currentTarget.reset();
+        // event.currentTarget.reset();
         router.push('/thank-you');
 
       } else {
