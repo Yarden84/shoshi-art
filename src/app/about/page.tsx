@@ -70,7 +70,7 @@ export default function AboutPage() {
             </div>
 
             <div className="p-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-6">
+              <h1 className={`text-3xl text-gray-900 mb-6 ${language === 'he' ? 'font-bold' : ''}`}>
                 {displayContent.title}
               </h1>
 
