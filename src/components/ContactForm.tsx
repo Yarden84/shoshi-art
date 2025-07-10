@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function ContactForm({ language }: { language: string }) {
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -17,6 +19,11 @@ export default function ContactForm({ language }: { language: string }) {
       if (response.ok) {
         setStatus('success');
         event.currentTarget.reset();
+        if (language === 'he') {
+          router.push('/he/thank-you');
+        } else {
+          router.push('/thank-you');
+        }
       } else {
         setStatus('error');
       }
@@ -107,9 +114,6 @@ export default function ContactForm({ language }: { language: string }) {
       >
         {language === 'he' ? 'שלח הודעה' : 'Send Message'}
       </button>
-      {status === 'success' && (
-        <p className="text-green-600 mt-4">{language === 'he' ? 'ההודעה נשלחה בהצלחה!' : 'Message sent successfully!'}</p>
-      )}
       {status === 'error' && (
         <p className="text-red-600 mt-4">{language === 'he' ? 'אירעה שגיאה בשליחה.' : 'An error occurred while sending.'}</p>
       )}
