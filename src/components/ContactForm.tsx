@@ -1,4 +1,4 @@
-export default function ContactForm() {
+export default function ContactForm({ language }: { language: string }) {
   return (
           <form 
             name="contact"
@@ -20,7 +20,7 @@ export default function ContactForm() {
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Name
+                {language === 'he' ? 'שם' : 'Name'}
               </label>
               <input
                 type="text"
@@ -35,7 +35,7 @@ export default function ContactForm() {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Email
+                {language === 'he' ? 'אימייל' : 'Email'}
               </label>
               <input
                 type="email"
@@ -50,7 +50,7 @@ export default function ContactForm() {
                 htmlFor="subject"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Subject
+                {language === 'he' ? 'נושא' : 'Subject'}
               </label>
               <input
                 type="text"
@@ -65,7 +65,7 @@ export default function ContactForm() {
                 htmlFor="message"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Message
+                {language === 'he' ? 'הודעה' : 'Message'}
               </label>
               <textarea
                 id="message"
@@ -79,7 +79,7 @@ export default function ContactForm() {
               type="submit"
               className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
             >
-              Send Message
+              {language === 'he' ? 'שלח הודעה' : 'Send Message'}
             </button>
           </form>
   );
