@@ -38,6 +38,7 @@ export default function ContactForm() {
             className="space-y-4"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
+            target="_self"
           >
             <input type="hidden" name="form-name" value="contact" />
             <p className="hidden">
