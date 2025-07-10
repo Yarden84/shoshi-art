@@ -1,9 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getAboutContent, AboutContent } from '@/lib/strapi';
+import { getAboutContent, AboutContent } from '@/lib/cms';
 import { useLanguage } from '@/contexts/LanguageContext';
-// import StrapiImage from '@/components/ui/StrapiImage';
 
 export default function AboutPage() {
   const [aboutContent, setAboutContent] = useState<AboutContent | null>(null);
