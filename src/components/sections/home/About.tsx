@@ -35,10 +35,9 @@ export default function About() {
 
   const displayContent = content || defaultContent;
 
-  // Truncate content to approximately 7 lines for the main page
   const truncateContent = (text: string, maxLines: number = 7) => {
     const words = text.split(' ');
-    const wordsPerLine = 12; // Approximate words per line
+    const wordsPerLine = 12;
     const maxWords = maxLines * wordsPerLine;
     
     if (words.length <= maxWords) {
@@ -61,7 +60,7 @@ export default function About() {
   }
 
   return (
-    <div className="w-full h-screen" style={{ backgroundColor: '#f5f1e8' }}>
+    <div className="w-full h-screen max-md:h-auto max-md:py-12" style={{ backgroundColor: '#f5f1e8' }}>
       <motion.section
         ref={ref}
         initial={{ opacity: 0, y: 40 }}
@@ -69,7 +68,7 @@ export default function About() {
         transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
         className="w-full h-screen flex items-center justify-center"
       >
-        <div className="flex flex-col md:flex-row w-full max-md:w-92 max-w-6xl h-[70vh] max-md:h-[82vh] shadow-lg rounded-lg overflow-hidden">
+        <div className="flex flex-col md:flex-row w-full max-md:w-92 max-w-6xl h-[70vh] max-md:h-auto shadow-lg rounded-lg overflow-hidden">
           <div className="relative w-full md:w-1/2 h-64 md:h-auto flex-shrink-0">
             <img
               src="/images/about.jpg"

@@ -53,13 +53,13 @@ export default function ArtWorks({ artworks }: ArtWorksProps) {
   console.log('Display Artworks:', displayArtworks);
 
   return (
-    <div className="w-full h-screen" style={{ backgroundColor: '#fefcf6' }}>
+    <div className="w-full h-screen max-md:h-auto max-md:py-12" style={{ backgroundColor: '#fefcf6' }}>
       <motion.section
         ref={ref}
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
         transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
-        className="w-full h-screen flex flex-col items-center justify-center relative"
+        className="w-full h-screen max-md:h-auto flex flex-col items-center justify-center relative"
       >
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true" />
         <h1 className="text-4xl text-gray-800 mb-12 z-10">{language === 'he' ? 'העבודות שלי' : 'My Artwork'}</h1>
