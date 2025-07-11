@@ -57,11 +57,11 @@ export default function Header() {
           initial={{ opacity: 0, x: -60 }}
           animate={textInView ? { opacity: 1, x: 0 } : {opacity: 0, x: -60}}
           transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
-          className="flex-1 flex flex-col justify-center items-start space-y-4 max-md:absolute max-md:left-[20] max-md:top-[65] max-md:w-full max-md:h-full"
+          className="flex-1 flex flex-col justify-center items-start space-y-4 max-md:block max-md:absolute max-md:left-[0] max-md:top-[0] max-md:w-full max-md:h-screen"
         >
-          <h1 className={`text-gray-800 mb-12 relative ${language === 'he' ? 'left-3 md:text-[7.5rem] max-md:self-end text-[3.2rem] max-md:w-[10rem] max-md:font-[700]' : 'xl:text-8xl md:text-7xl text-[2rem] max-md:w-[10rem]'}`}>{displayContent.title}</h1>
-          <h3 className={`w-[300px] max-md:w-[12rem] text-gray-600 text-lg mb-8 ${language === 'en' ? 'max-md:self-end max-md:mr-5 xl:text-2xl md:text-xl' : 'max-md:mr-10 md:text-2xl'}`}>{displayContent.subtitle}</h3>
-          <h5 className={`text-gray-600 text-base md:text-lg ${language === 'en' ? ' max-md:self-end max-md:mr-32' : 'max-md:mr-10'}`}>{displayContent.small}</h5>
+          <h1 className={`text-gray-800 mb-12 relative max-md:absolute ${language === 'he' ? 'left-3 md:text-[7.5rem] max-md:self-end text-[3.2rem] max-md:w-[10rem] max-md:font-[700] max-md:top-[310px]' : 'xl:text-8xl md:text-7xl text-[2rem] max-md:w-[10rem] max-md:left-10 max-md:top-[320px]'}`}>{displayContent.title}</h1>
+          <h3 className={`w-[300px] max-md:w-[12rem] text-gray-600 text-lg mb-8 max-md:absolute ${language === 'en' ? 'max-md:self-end max-md:mr-5 xl:text-2xl md:text-xl max-md:right-0' : 'max-md:mr-10 md:text-2xl'} max-md:top-[480px]`}>{displayContent.subtitle}</h3>
+          <h5 className={`text-gray-600 text-base md:text-lg max-md:absolute ${language === 'en' ? ' max-md:self-end max-md:mr-32 max-md:right-0' : 'max-md:mr-10'} max-md:top-[580px]`}>{displayContent.small}</h5>
         </motion.div>
         <div className="flex-1 flex items-center justify-center relative min-h-[82vh]">
           <motion.div 
@@ -80,7 +80,7 @@ export default function Header() {
             initial={{ opacity: 0, x: 40 }}
             animate={image2InView ? { opacity: 1, x: 0 } : {opacity: 0, x: 80}}
             transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }} 
-            className="w-62.5 max-lg:w-47 max-md:w-50 rounded-lg shadow-md object-cover absolute right-0 max-md:right-[-5] top-[30%] max-md:top-[350] z-20 border-4 border-white shine">
+            className="w-62.5 max-lg:w-47 max-md:w-50 max-sm:w-[40vw] rounded-lg shadow-md object-cover absolute right-0 max-md:right-[-5] max-sm:right-[30] top-[30%] max-md:top-[350] z-20 border-4 border-white shine">
               
             <img
               src="/images/header-2.jpg"
