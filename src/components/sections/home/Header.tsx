@@ -72,7 +72,7 @@ export default function Header() {
             className={`w-87.5 h-87.5 max-xl:w-75 max-lg:w-60 max-lg:h-60 max-xl:h-75 max-md:w-50 max-md:h-50 rounded-lg shadow-lg absolute left-8 max-xl:left-auto max-lg:right-38 max-xl:right-50 top-0 max-md:top-[100] z-10 border-4 border-white flex items-center justify-center overflow-hidden ${language === 'he' ? 'max-md:left-auto max-md:right-[-220]' : 'max-md:left-3'}`}
             style={{ zIndex: 10 }}
           >
-            <div className="w-126 h-126 max-md:w-80 max-md:h-80 bg-[url('/images/header-1.jpg')] bg-cover bg-center shrink-0 animate-spin-slower"></div>
+            <div className="w-126 h-126 max-md:w-80 max-md:h-80 bg-[url('/images/header-1.webp')] bg-cover bg-center shrink-0 animate-spin-slower"></div>
           </motion.div>
           
           <motion.div 
@@ -83,7 +83,7 @@ export default function Header() {
             className="w-62.5 max-lg:w-47 max-md:w-50 max-sm:w-[40vw] rounded-lg shadow-md object-cover absolute right-0 max-md:right-[-5] max-sm:right-[30] top-[30%] max-md:top-[350] z-20 border-4 border-white shine">
               
             <img
-              src="/images/header-2.jpg"
+              src="/images/header-2.webp"
               alt="Shoshi Haizler"
               className="w-[100%] rounded-lg"
               style={{ zIndex: 20 }}
@@ -95,7 +95,7 @@ export default function Header() {
             animate={image3InView ? { opacity: 1, y: 0 } : {opacity: 0, y: 40}}
             transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}  className={`w-67.5 max-xl:w-58 max-md:w-45 rounded-lg shadow object-cover absolute left-0 bottom-0 max-xl:left-auto max-xl:right-80 ${language === 'he' ? 'max-lg:w-45 max-lg:right-50 max-lg:bottom-20' : 'max-lg:right-52'} max-md:right-[-45] max-md:bottom-auto max-md:top-[-50] z-10 border-4 border-white shine`}>
               <img
-                src="/images/header-3.jpg"
+                src="/images/header-3.webp"
                 alt="Shoshi Haizler"
                 className="w-[100%] rounded-lg"
               />

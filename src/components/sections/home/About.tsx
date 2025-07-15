@@ -71,7 +71,7 @@ export default function About() {
         <div className="flex flex-col md:flex-row w-full max-md:w-92 max-w-6xl h-[70vh] max-md:h-auto shadow-lg rounded-lg overflow-hidden">
           <div className="relative w-full md:w-1/2 h-64 md:h-auto flex-shrink-0">
             <img
-              src="/images/about.jpg"
+              src="/images/about.webp"
               alt="Shoshi Haizler working on sculpture"
               className="w-full h-full object-cover object-center"
             />
