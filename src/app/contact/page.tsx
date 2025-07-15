@@ -10,7 +10,7 @@ export default function ContactPage() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: "url('/images/contact-bg.jpg')",
+          backgroundImage: "url('/images/contact-bg.webp')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.18,

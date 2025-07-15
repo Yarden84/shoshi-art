@@ -50,7 +50,7 @@ export default function AboutPage() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: "url('/images/about-bg.jpg')",
+          backgroundImage: "url('/images/about-bg.webp')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.18,
