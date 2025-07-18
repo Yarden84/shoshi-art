@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import FilterDropdown from '@/components/FilterDropdown';
 import { GalleryItem } from '@/lib/cms';
 import { useLanguage } from '@/contexts/LanguageContext';
+import Image from 'next/image';
 
 export default function GalleryClient({ galleryItems }: { galleryItems: GalleryItem[] }) {
   const searchParams = useSearchParams();
@@ -12,6 +13,11 @@ export default function GalleryClient({ galleryItems }: { galleryItems: GalleryI
   
   const urlFilter = searchParams.get('filter');
   const [filter, setFilter] = useState('All');
+  const [mounted, setMounted] = useState(false); // Add this line
+
+  useEffect(() => {
+    setMounted(true); // Add this useEffect
+  }, []);
 
   useEffect(() => {
     if (urlFilter) {
@@ -53,6 +59,19 @@ export default function GalleryClient({ galleryItems }: { galleryItems: GalleryI
     }
   });
 
+  // Add this loading state
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-gray-50 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center py-12">
+            <p className="text-gray-500">Loading gallery...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,12 +90,14 @@ export default function GalleryClient({ galleryItems }: { galleryItems: GalleryI
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {allImages.map(({ galleryItem, image, imageIndex }) => (
-              <div key={`${galleryItem.title}-${imageIndex}`} className="w-full aspect-square rounded-lg overflow-hidden shadow-lg border border-gray-100 bg-gray-50 flex items-center justify-center group border-4 border-white">
-                <img
+              <div key={`${galleryItem.title}-${imageIndex}`} className="w-full aspect-square rounded-lg overflow-hidden shadow-lg border border-gray-100 bg-gray-50 flex items-center justify-center group border-4 border-white relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse" />
+                <Image
                   src={image.url}
                   alt={`${galleryItem.title || 'Gallery Item'} - Image ${imageIndex + 1}`}
-                  className="h-full animate-none group-hover:scale-110 transition-all duration-700"
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover animate-none group-hover:scale-110 transition-all duration-700 relative z-10"
                 />
               </div>
             ))}
