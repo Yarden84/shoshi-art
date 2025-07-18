@@ -63,7 +63,7 @@ export default function ArtWorks({ artworks }: ArtWorksProps) {
       >
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true" />
         <h1 className="text-4xl text-gray-800 mb-12 z-10">{language === 'he' ? 'העבודות שלי' : 'My Artwork'}</h1>
-        <div className="flex flex-row flex-wrap justify-center gap-8 z-10">
+        <div className="flex flex-row flex-wrap justify-center gap-8 z-10 max-lg:grid max-lg:grid-cols-2 max-lg:grid-rows-2 max-sm:gap-[10px]">
           {displayArtworks.map((art, index) => (
             <Link
               key={index}
